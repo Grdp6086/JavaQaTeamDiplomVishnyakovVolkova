@@ -7,11 +7,11 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class CreditAccountTest {
-    
+
 
     @ParameterizedTest
-    @CsvFileSource (files = "src/test/resources/balance.csv")
-    public void shouldAddToPositiveBalance(int expected, int initialBalance, int creditLimit, int rate, int addToCard){
+    @CsvFileSource(files = "src/test/resources/balance.csv")
+    public void shouldAddToPositiveBalance(int expected, int initialBalance, int creditLimit, int rate, int addToCard) {
         CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
 
         account.add(addToCard);
@@ -21,27 +21,27 @@ public class CreditAccountTest {
     }
 
     @Test
-    public void shouldThrowsWithRateUnderLimit(){
+    public void shouldThrowsWithRateUnderLimit() {
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            CreditAccount account1 = new CreditAccount(0,500,-1);
+            CreditAccount account1 = new CreditAccount(0, 500, -1);
         });
     }
 
     @ParameterizedTest
     @CsvFileSource(files = "src/test/resources/pay.csv")
-    public  void shouldPayCardToCard(int expected, int initialBalance, int creditLimit, int rate, int payToCard) {
+    public void shouldPayCardToCard(int expected, int initialBalance, int creditLimit, int rate, int payToCard) {
         Account account = new CreditAccount(initialBalance, creditLimit, rate);
 
         account.pay(payToCard);
 
-        Assertions.assertEquals(expected,account.getBalance());
+        Assertions.assertEquals(expected, account.getBalance());
     }
 
     @ParameterizedTest
     @CsvFileSource(files = "src/test/resources/percent.csv")
-    public void shouldAddPercent(int expected, int initialBalance, int creditLimit, int rate){
-        Account account = new CreditAccount(initialBalance,creditLimit,rate);
+    public void shouldAddPercent(int expected, int initialBalance, int creditLimit, int rate) {
+        Account account = new CreditAccount(initialBalance, creditLimit, rate);
 
         account.yearChange();
 
