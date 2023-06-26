@@ -28,6 +28,22 @@ public class CreditAccountTest {
         });
     }
 
+    @Test
+    public void shouldThrowsWithCreditLimitUnder0() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Account account = new CreditAccount(0, -200, 1);
+        });
+    }
+
+    @Test
+    public void shouldThrowsWithInitialBalanceUnder0() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Account account = new CreditAccount(-1, 200, 1);
+        });
+    }
+
     @ParameterizedTest
     @CsvFileSource(files = "src/test/resources/pay.csv")
     public void shouldPayCardToCard(int expected, int initialBalance, int creditLimit, int rate, int payToCard) {
