@@ -135,18 +135,18 @@ public class SavingAccountTest {
 
     @ParameterizedTest
     @CsvFileSource(files = "src/test/resources/YearChange.csv")
-    public void shouldCalculatePercent(int expected, int initialBalance, int minBalance, int maxBalance, int rate){
+    public void shouldCalculatePercent(int expected, int initialBalance, int minBalance, int maxBalance, int rate) {
         Account account = new SavingAccount(
                 initialBalance,
                 minBalance,
                 maxBalance,
                 rate);
 
-        Assertions.assertEquals(expected,account.yearChange());
+        Assertions.assertEquals(expected, account.yearChange());
     }
 
     @Test
-    public void shouldReturnFalseWithAmountUnderZero(){
+    public void shouldReturnFalseWithAmountUnderZero() {
         Account account = new SavingAccount(
                 2_000,
                 1_000,
