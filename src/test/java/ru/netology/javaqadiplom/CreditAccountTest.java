@@ -22,7 +22,7 @@ public class CreditAccountTest {
 
     @Test
     public void shouldThrowsWithRateUnderLimit() {
-
+      
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             CreditAccount account1 = new CreditAccount(0, 500, -1);
         });
@@ -56,11 +56,13 @@ public class CreditAccountTest {
 
     @ParameterizedTest
     @CsvFileSource(files = "src/test/resources/percent.csv")
-    public void shouldAddPercent(int expected, int initialBalance, int creditLimit, int rate) {
+    public void shouldAddPercent(int expected, int initialBalance, int creditLimit, int rate, int amount) {
         Account account = new CreditAccount(initialBalance, creditLimit, rate);
-
+        account.pay(amount);
         account.yearChange();
 
         Assertions.assertEquals(expected, account.yearChange());
     }
 }
+
+
