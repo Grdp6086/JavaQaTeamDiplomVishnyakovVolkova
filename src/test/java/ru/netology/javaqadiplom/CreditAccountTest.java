@@ -22,7 +22,7 @@ public class CreditAccountTest {
 
     @Test
     public void shouldThrowsWithRateUnderLimit() {
-
+      
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             CreditAccount account1 = new CreditAccount(0, 500, -1);
         });
@@ -60,7 +60,6 @@ public class CreditAccountTest {
         Account account = new CreditAccount(initialBalance, creditLimit, rate);
         account.pay(amount);
         account.yearChange();
-
 
         Assertions.assertEquals(expected, account.yearChange());
     }
